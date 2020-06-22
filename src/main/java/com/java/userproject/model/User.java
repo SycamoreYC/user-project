@@ -15,6 +15,7 @@ import java.time.OffsetDateTime;
 @Setter
 @Getter
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = "updatedAt")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +33,7 @@ public class User {
     @Column(insertable = false)
     protected OffsetDateTime updatedAt;
 
-    @Builder
+    @Builder(toBuilder = true)
     public User(Long id, String name, Integer age, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
         this.id = id;
         this.name = name;

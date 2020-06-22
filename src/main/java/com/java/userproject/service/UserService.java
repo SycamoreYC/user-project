@@ -2,9 +2,12 @@ package com.java.userproject.service;
 
 import com.java.userproject.errors.UserNotFoundException;
 import com.java.userproject.model.User;
+import com.java.userproject.model.UserRequest;
 import com.java.userproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.OffsetDateTime;
 
 import static java.lang.String.format;
 
@@ -32,5 +35,15 @@ public class UserService {
 
     public Long saveUser(User user) {
         return userRepository.save(user).getId();
+    }
+
+    public User updateUser(Long id, UserRequest userRequest) throws UserNotFoundException {
+        User user = this.getUser(id);
+        User updatedUser = user.toBuilder()
+                .name(userRequest.getName())
+                .age(userRequest.getAge())
+                .updatedAt(OffsetDateTime.now())
+                .build();
+        return userRepository.save(updatedUser);
     }
 }
