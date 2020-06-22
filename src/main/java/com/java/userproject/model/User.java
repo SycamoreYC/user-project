@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_info")
 @Setter
 @Getter
 @RequiredArgsConstructor
