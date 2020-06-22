@@ -29,4 +29,8 @@ public class UserService {
             return false;
         }
     }
+
+    public Long saveUser(User user) {
+        return userRepository.save(user).getId();
+    }
 }

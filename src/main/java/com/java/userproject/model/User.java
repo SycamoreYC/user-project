@@ -14,7 +14,7 @@ import java.time.OffsetDateTime;
 @Table(name = "user_info")
 @Setter
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
