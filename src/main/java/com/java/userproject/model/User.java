@@ -1,9 +1,6 @@
 package com.java.userproject.model;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,4 +31,13 @@ public class User {
 
     @Column(insertable = false)
     protected OffsetDateTime updatedAt;
+
+    @Builder
+    public User(Long id, String name, Integer age, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
 }

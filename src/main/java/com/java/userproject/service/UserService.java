@@ -20,4 +20,13 @@ public class UserService {
             throw new UserNotFoundException(format("The user with id %s is not exist", id));
         }
     }
+
+    public Boolean deleteUser(Long id) {
+        try {
+            userRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
