@@ -4,6 +4,7 @@ import com.java.userproject.model.User;
 import com.java.userproject.model.UserRequest;
 import com.java.userproject.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public User getUsers(@PathVariable("id") Long id) {
+    public User getUser(@PathVariable("id") Long id) {
         return userService.getUser(id);
     }
 
@@ -46,5 +47,11 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public User updateUser(@PathVariable("id") Long id, @RequestBody @Valid UserRequest userRequest) {
         return userService.updateUser(id, userRequest);
+    }
+
+    @GetMapping("/page/{page}/size/{size}")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<User> getPagedUsers(@PathVariable("page") Integer page, @PathVariable("size") Integer size) {
+        return userService.getPagedUsers(page, size);
     }
 }

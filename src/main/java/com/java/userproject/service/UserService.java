@@ -5,6 +5,10 @@ import com.java.userproject.model.User;
 import com.java.userproject.model.UserRequest;
 import com.java.userproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -45,5 +49,11 @@ public class UserService {
                 .updatedAt(OffsetDateTime.now())
                 .build();
         return userRepository.save(updatedUser);
+    }
+
+    public Page<User> getPagedUsers(Integer page, Integer size) {
+        Sort.Direction sort =  Sort.Direction.ASC;
+        Pageable pageable = PageRequest.of(page, size, sort, "id");
+        return userRepository.findAll(pageable);
     }
 }
