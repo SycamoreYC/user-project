@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAllByAgeBetween(Integer lower, Integer upper);
+
+    List<User> findAllByNameContains(String name);
 }

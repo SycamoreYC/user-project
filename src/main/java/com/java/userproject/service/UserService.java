@@ -61,4 +61,8 @@ public class UserService {
     public List<User> getUsersByAgeRange(Integer lower, Integer upper) {
         return userRepository.findAllByAgeBetween(lower, upper);
     }
+
+    public List<User> getUsersByName(String name) {
+        return userRepository.findAllByNameContains(name);
+    }
 }

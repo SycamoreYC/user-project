@@ -57,10 +57,16 @@ public class UserController {
         return userService.getPagedUsers(page, size);
     }
 
-    @GetMapping
+    @GetMapping("/age-range")
     @ResponseStatus(HttpStatus.OK)
     public List<User> getUsersByAgeRange(@RequestParam(name = "lower", defaultValue = "0") Integer lower,
                                @RequestParam(name = "upper", defaultValue = "150") Integer upper) {
         return userService.getUsersByAgeRange(lower, upper);
+    }
+
+    @GetMapping("/name-pattern")
+    @ResponseStatus(HttpStatus.OK)
+    public List<User> getUsersByName(@RequestParam(name = "name") String name) {
+        return userService.getUsersByName(name);
     }
 }
