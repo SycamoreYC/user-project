@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -53,5 +55,12 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public Page<User> getPagedUsers(@PathVariable("page") Integer page, @PathVariable("size") Integer size) {
         return userService.getPagedUsers(page, size);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<User> getUsersByAgeRange(@RequestParam(name = "lower", defaultValue = "0") Integer lower,
+                               @RequestParam(name = "upper", defaultValue = "150") Integer upper) {
+        return userService.getUsersByAgeRange(lower, upper);
     }
 }
