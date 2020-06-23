@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 import static java.lang.String.format;
 
@@ -55,5 +56,13 @@ public class UserService {
         Sort.Direction sort =  Sort.Direction.ASC;
         Pageable pageable = PageRequest.of(page, size, sort, "id");
         return userRepository.findAll(pageable);
+    }
+
+    public List<User> getUsersByAgeRange(Integer lower, Integer upper) {
+        return userRepository.findAllByAgeBetween(lower, upper);
+    }
+
+    public List<User> getUsersByName(String name) {
+        return userRepository.findAllByNameContains(name);
     }
 }
