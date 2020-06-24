@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.2.2.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id 'jacoco'
 	id "io.freefair.lombok" version "5.1.0"
 }
 
@@ -12,6 +13,38 @@ sourceCompatibility = '1.8'
 repositories {
 	mavenCentral()
 }
+
+jacoco {
+	toolVersion = "0.8.4"
+}
+
+jacocoTestReport {
+	reports {
+		xml.enabled false
+		html.enabled true
+		html.destination file("${buildDir}/jacoco/report")
+	}
+}
+
+jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			limit {
+				minimum = 0.05
+			}
+		}
+	}
+}
+
+test {
+	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+}
+
+test.finalizedBy jacocoTestReport
+check.dependsOn jacocoTestCoverageVerification
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
