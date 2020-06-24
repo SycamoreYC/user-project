@@ -15,33 +15,28 @@ services:
     ports:
       - "5431:5432"
 
-  base:
-    image: gradle:6.5.0-jdk11
+  dev:
+    image: gradle:5.5.1-jdk11
     working_dir: /app
+    ports:
+      - "8080:8080"
     environment:
       DB_HOST: db
       DB_PORT: 5432
       DB_NAME: userDB
       DB_USER: postgres
       DB_PASSWORD: password10
-    volumes:
-      - .:/app
-      - gradle-cache:/home/gradle/.gradle
-
-  dev:
-    extends:
-      service: base
-    ports:
-      - "8080:8080"
     command: ./gradlew bootRun
     depends_on:
       - db
     networks:
       - app_net
-
+    volumes:
+      - .:/app
+      - gradle-cache:/home/gradle/.gradle
 networks:
   app_net:
 
 volumes:
-  gradle-cache:
   db-cache:
+  gradle-cache:
