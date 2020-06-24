@@ -24,6 +24,9 @@ dependencies {
 	}
 	implementation 'org.flywaydb:flyway-core:5.+'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'io.micrometer:micrometer-registry-prometheus:latest.release'
+	implementation 'io.micrometer:micrometer-core:latest.integration'
+	implementation "org.springframework.boot:spring-boot-starter-actuator"
 }
 
 test {
