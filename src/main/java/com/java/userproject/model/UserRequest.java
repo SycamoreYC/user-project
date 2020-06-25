@@ -1,5 +1,6 @@
 package com.java.userproject.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -7,6 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class UserRequest {
 
     @NotNull(message = "Name cannot be null")
