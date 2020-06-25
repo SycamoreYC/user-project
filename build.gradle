@@ -46,6 +46,12 @@ test {
 test.finalizedBy jacocoTestReport
 check.dependsOn jacocoTestCoverageVerification
 
+
+def profileName = System.getProperty("profile") ?: "dev"
+processResources {
+	filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [profileName: profileName]
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-web'

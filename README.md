@@ -1,11 +1,11 @@
 - [X] 使用(Spring initializr)[https://start.spring.io/] 初始化项目，使用Maven/Gradle进行构建。
 - [X] 创建REST API（User API），实现对User的CRUD。User对象需要包含以下属性：id, name, age, createdAt, updatedAt等。
 - [X] 使用MySQL/PostgreSQL进行数据持久化，使用Flyway/Liquibase进行数据库版本控制。
-- [ ] 使用Junit5和Mockito编写单元测试，除配置类外测试覆盖率100%。使用jacoco进行测试覆盖率检查。
+- [X] 使用Junit5和Mockito编写单元测试，除配置类外测试覆盖率100%。使用jacoco进行测试覆盖率检查。
 - [X] 需要实现分页查询功能。
 - [X] 需要实现动态查询，比如根据姓名和年龄或者创建时间区间进行查询。
 - [X] 创建用户时，id、createdAt和updatedAt需要自动生成。
-- [ ] 使用Docker搭建本地运行环境, 本地Docker运行环境中使用不同profile。
+- [X] 使用Docker搭建本地运行环境, 本地Docker运行环境中使用不同profile。
 
 - [X] 创建第二个REST API（Email API），它根据 User 的ID，返回其邮箱地址。规则：如果id为 12345，那么邮箱地址为 12345@rest.local，即添加后缀即可。(只是简单的实现)
 - [X] 给 User API 和 Email 添加 actuator。
