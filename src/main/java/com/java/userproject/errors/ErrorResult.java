@@ -3,6 +3,7 @@ package com.java.userproject.errors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +16,7 @@ public class ErrorResult {
 
     private String error;
 
-    private Integer status;
+    private HttpStatus status;
 
     private String message;
 }
