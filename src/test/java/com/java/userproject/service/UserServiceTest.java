@@ -119,8 +119,8 @@ class UserServiceTest {
                 .age(18)
                 .name("test")
                 .build();
-        Integer page = 0;
-        Integer size = 1;
+        int page = 0;
+        int size = 1;
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
 
         doReturn(new PageImpl<>(Collections.singletonList(mockUser))).when(userRepository).findAll(pageable);
@@ -130,8 +130,8 @@ class UserServiceTest {
 
     @Test
     void should_returnUserList_when_queryByAgeRange() {
-        Integer lower = 10;
-        Integer upper = 11;
+        int lower = 10;
+        int upper = 11;
 
         doReturn(Collections.emptyList()).when(userRepository).findAllByAgeBetween(lower, upper);
 
