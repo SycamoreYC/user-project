@@ -31,4 +31,8 @@ eureka:
       defaultZone: http://docker.for.mac.localhost:9000/eureka
     fetch-registry: true
     register-with-eureka: true
+
+feign:
+  hystrix:
+    enabled: true
       
