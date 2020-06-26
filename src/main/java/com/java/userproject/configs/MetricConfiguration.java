@@ -1,4 +1,4 @@
-package com.java.userproject.metrics;
+package com.java.userproject.configs;
 
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
