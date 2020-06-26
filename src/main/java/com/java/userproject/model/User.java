@@ -32,6 +32,9 @@ public class User {
     @Column(nullable = false)
     private Integer age;
 
+    @Column
+    private String email;
+
     @Column(insertable = false, updatable = false)
     private OffsetDateTime createdAt;
 
@@ -39,10 +42,11 @@ public class User {
     protected OffsetDateTime updatedAt;
 
     @Builder(toBuilder = true)
-    public User(Long id, String name, Integer age, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
+    public User(Long id, String name, Integer age, String email, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.email = email;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }

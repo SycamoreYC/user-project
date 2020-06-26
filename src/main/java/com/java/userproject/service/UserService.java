@@ -5,6 +5,7 @@ import com.java.userproject.model.User;
 import com.java.userproject.model.UserRequest;
 import com.java.userproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +21,9 @@ import static java.lang.String.format;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     public User getUser(Long id) {
         try {
@@ -47,6 +51,7 @@ public class UserService {
         User updatedUser = user.toBuilder()
                 .name(userRequest.getName())
                 .age(userRequest.getAge())
+                .email(emailService.getEmailByUserId(id).getAddress())
                 .updatedAt(OffsetDateTime.now())
                 .build();
         return userRepository.save(updatedUser);

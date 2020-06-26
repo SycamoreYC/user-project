@@ -29,4 +29,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://docker.for.mac.localhost:9000/eureka
+    fetch-registry: true
+    register-with-eureka: true
       
