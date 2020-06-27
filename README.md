@@ -15,4 +15,55 @@
 - [X] 在User API中使用 Hystrix，在调用Email API的部分添加断路器和fallback响应。访问 User API，同时手动关闭和打开 Email API，查看断路器的行为。
 - [ ] 使用 Spring Cloud Gateway 对外暴露 User API和Email API。
 - [ ] 使用 Spring Cloud Config 管理 User API的配置。
-- [ ] 注意：Mac OSX 不能以host 的网络模式启动 docker 容器。如果需要从Docker内部访问Mac主机，可以使用主机名 docker.for.mac.localhost。
+
+## What
+User Api includes CRUD
+
+## How to start
+
+### local
+```
+docker-compose up
+```
+The server will be running at http://localhost:8080
+
+## APIS
+1. save
+```
+url: /users
+methdo: POST
+body: { name: "test", age: 18 }
+```
+
+2. delete
+```
+ur: /users/:userId
+method: DELETE
+```
+
+3. update
+```
+url: /users/:userId
+method: PUT
+body: { name: "test1", age: 19 }
+```
+
+4. get
+```
+url: /users/:userId
+method: GET
+```
+
+5. search by age
+```
+url: /users/age-range
+method: GET
+queryParams: { upper: 10, lower: 18 }
+```
+
+6. search by name
+```
+url: /users/name-pattern
+method: GET
+queryParams: { name: "te" }
+```
