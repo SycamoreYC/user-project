@@ -2,11 +2,10 @@ package com.java.userproject.controller;
 
 import com.java.userproject.model.User;
 import com.java.userproject.model.UserRequest;
-import com.java.userproject.service.EmailService;
 import com.java.userproject.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +21,9 @@ public class UserController {
     private final UserService userService;
 
     @Qualifier(value = "userCounter")
+
+    @Value("${spring.datasource.username}")
+    private  String username;
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -64,5 +66,11 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public List<User> getUsersByName(@RequestParam(name = "name") String name) {
         return userService.getUsersByName(name);
+    }
+
+    @GetMapping("/userName")
+    @ResponseStatus(HttpStatus.OK)
+    public String getConfigUserName() {
+        return "userName: " + username;
     }
 }
