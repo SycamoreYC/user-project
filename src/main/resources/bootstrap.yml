@@ -1,9 +1,12 @@
 spring:
+  profiles: dev
   application:
-    name: user-service
+    name: user-center
   cloud:
     config:
       uri: http://localhost:8083/
+      label: master
       profile: dev
+
 server:
   port: 8080

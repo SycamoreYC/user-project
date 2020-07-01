@@ -6,6 +6,7 @@ import com.java.userproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +17,15 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
+@RefreshScope
 public class UserController {
 
     private final UserService userService;
 
     @Qualifier(value = "userCounter")
 
-    @Value("${spring.datasource.username}")
-    private  String username;
+    @Value("${data.env}")
+    private  String env;
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -68,9 +70,9 @@ public class UserController {
         return userService.getUsersByName(name);
     }
 
-    @GetMapping("/userName")
+    @GetMapping("/env")
     @ResponseStatus(HttpStatus.OK)
     public String getConfigUserName() {
-        return "userName: " + username;
+        return "userName: " + env;
     }
 }
